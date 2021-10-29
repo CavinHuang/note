@@ -1,6 +1,5 @@
 ---
 title: Vue3.0 新特性以及使用经验总结
-sidebar: true
 ---
 前言
 --
