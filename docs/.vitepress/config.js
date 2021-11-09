@@ -4,9 +4,15 @@
 const nav = require('./configs/nav')
 const sidebar = require('./configs/sidebar')
 const base = process.env.BASE || '/'
+import vueJsx from '@vitejs/plugin-vue-jsx'
 module.exports = {
   base,
   title: 'CavinHuangNote学习笔记',
+  vite: {
+    plugins: [
+      vueJsx()
+    ]
+  },
   themeConfig: {
     lastUpdated: '最后更新',
     editLinkText: '编辑此页',
@@ -25,10 +31,12 @@ module.exports = {
     toc: { includeLevel: [1, 2] },
 
     config: (md) => {
-      const { demoBlockPlugin } = require('vitepress-theme-demoblock')
-      md.use(demoBlockPlugin, {
-        cssPreprocessor: 'less'
-      })
+      // const { demoBlockPlugin } = require('../../demoblock')
+      const { demoBlockPlugin: demoBlockPluginRuner } = require('../../code-runner')
+      // md.use(demoBlockPlugin, {
+      //   cssPreprocessor: 'scss'
+      // })
+      md.use(demoBlockPluginRuner)
     }
   }
 }
