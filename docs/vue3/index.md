@@ -1,6 +1,6 @@
 # Test
 
-::: codeDemo test11111
+::: codeDemo 使用`size`、`style`属性来定义 Card 的样式
 
 ```js
 console.log(1);

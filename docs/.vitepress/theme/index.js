@@ -1,5 +1,5 @@
 import theme from 'vitepress/dist/client/theme-default'
-import 'vitepress-theme-demoblock/theme/styles/index.css'
+import '../../../theme/styles/index.css'
 import { registerComponents } from './register-components'
 import './styles/index.css'
 
