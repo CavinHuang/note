@@ -34,7 +34,7 @@ jobs:
       #      npm run test:local
       - name: set ssh key # 临时设置 ssh key
         run: |
-          mkdir -p ~/.ssh/
+          # mkdir -p ~/.ssh/
           echo "${{secrets.COSEN_ID_RSA}}" > ~/.ssh/id_rsa
           chmod 600 ~/.ssh/id_rsa
           ssh-keyscan "47.94.136.43" >> ~/.ssh/known_hosts
