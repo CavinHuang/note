@@ -41,8 +41,8 @@ jobs:
       - name: deploy
         run: |
           ssh work@47.94.136.43"
-            cd /home/work/choba-lego/admin-fe;
-            git remote add origin https://CavinHuang:${{secrets.COSEN_TOKEN}}@github.com:CavinHuang/note.git;
+            cd /home/work/cavinHuang-note;
+            git remote add origin https://${{secrets.COSEN_TOKEN}}@github.com/CavinHuang/note.git;
             git checkout main;
             git config pull.rebase false;
             git pull origin main;
