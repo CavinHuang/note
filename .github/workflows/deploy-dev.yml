@@ -1,4 +1,4 @@
-name: deploy for feature_dev
+name: deploy for main
 
 on:
   push:
@@ -53,8 +53,9 @@ jobs:
             npm run docs:build;
 
             # 启动 docker
-            docker-compose build admin-fe; # 和 docker-compose.yml service 名字一致
+            docker-compose build cavinHuang-note; # 和 docker-compose.yml service 名字一致
             docker-compose up -d;
           "
       - name: delete ssh key
         run: rm -rf ~/.ssh/id_rsa
+
