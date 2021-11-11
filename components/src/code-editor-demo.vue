@@ -6,7 +6,7 @@
 
 <script>
 // 引入全局实例
-import _CodeMirror from 'codemirror/lib/codemirror'
+// import _CodeMirror from 'codemirror/lib/codemirror'
 
 // 核心样式
 import 'codemirror/lib/codemirror.css'
@@ -47,7 +47,7 @@ const codemirrorThemList = [
 ]
 
 // 尝试获取全局实例
-const CodeMirror = window.CodeMirror || _CodeMirror
+let CodeMirror = window.CodeMirror || _CodeMirror
 let coder = null // 编辑器实例
 
 export default defineComponent({
@@ -98,6 +98,11 @@ export default defineComponent({
       initialize: () => {
         if (props.mode) {
           data.options.mode = props.mode
+        }
+        if (window.CodeMirror) {
+          CodeMirror = window.CodeMirror
+        } else {
+          CodeMirror = require('codemirror/lib/codemirror')
         }
         // 初始化编辑器实例，传入需要被实例化的文本域对象和默认配置
         coder = CodeMirror.fromTextArea(proxy.$refs.textarea, data.options)

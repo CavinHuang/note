@@ -32,11 +32,11 @@ module.exports = {
 
     config: (md) => {
       // const { demoBlockPlugin } = require('../../demoblock')
-      const { demoBlockPlugin: demoBlockPluginRuner } = require('../../code-runner')
+      // const { demoBlockPlugin: demoBlockPluginRuner } = require('../../code-runner')
       // md.use(demoBlockPlugin, {
       //   cssPreprocessor: 'scss'
       // })
-      md.use(demoBlockPluginRuner)
+      // md.use(demoBlockPluginRuner)
     }
   }
 }

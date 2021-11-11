@@ -27,7 +27,6 @@ import { ref, defineComponent } from 'vue'
 export default defineComponent({
   setup() {
     const title = ref('vitepress-theme-demoblock')
-
     return { title }
   }
 })

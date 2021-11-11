@@ -42,6 +42,7 @@ jobs:
         run: |
           ssh work@47.94.136.43 "
             cd /home/work/cavinHuang-note;
+            git branch -M main;
             git remote add origin https://CavinHuang:${{secrets.COSEN_TOKEN}}@github.com/CavinHuang/note.git;
             git checkout main;
             git config pull.rebase false;
@@ -49,8 +50,8 @@ jobs:
             git remote remove origin;
 
             # 构建 prd-dev
-            npm i;
-            npm run docs:build;
+            #npm i;
+            #npm run docs:build;
 
             # 启动 docker
             docker-compose build cavin-huang-note; # 和 docker-compose.yml service 名字一致
