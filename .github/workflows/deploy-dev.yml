@@ -40,7 +40,7 @@ jobs:
           ssh-keyscan "${{secrets.COSEN_HOST}}" >> ~/.ssh/known_hosts
       - name: deploy
         run: |
-          ssh work@${{secrets.COSEN_HOST}} "
+          ssh work@47.94.136.43"
             cd /home/work/choba-lego/admin-fe;
             git remote add origin https://CavinHuang:${{secrets.COSEN_TOKEN}}@github.com:CavinHuang/note.git;
             git checkout main;
