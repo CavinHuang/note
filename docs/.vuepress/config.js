@@ -4,15 +4,14 @@
 const nav = require('./configs/nav')
 const sidebar = require('./configs/sidebar')
 const base = process.env.BASE || '/'
-import vueJsx from '@vitejs/plugin-vue-jsx'
+const path = require('path')
+// const { base } = require('vuepress')
 module.exports = {
   base,
-  title: 'CavinHuangNote学习笔记',
-  vite: {
-    plugins: [
-      vueJsx()
-    ]
-  },
+  lang: 'zh-CN',
+  title: 'CavinHuangNote笔记',
+  description: '愿世界和平！',
+  public: path.resolve(__dirname, '../public'),
   themeConfig: {
     lastUpdated: '最后更新',
     editLinkText: '编辑此页',
@@ -20,7 +19,7 @@ module.exports = {
     editLink: true,
     nextLinks: true,
     prevLinks: true,
-    nav,
+    navbar: nav,
     sidebar,
   },
   markdown: {
