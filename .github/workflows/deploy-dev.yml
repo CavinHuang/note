@@ -53,7 +53,7 @@ jobs:
             npm run docs:build;
 
             # 启动 docker
-            docker-compose build cavinHuang-note; # 和 docker-compose.yml service 名字一致
+            docker-compose build cavin-huang-note; # 和 docker-compose.yml service 名字一致
             docker-compose up -d;
           "
       - name: delete ssh key
