@@ -64,7 +64,7 @@ module.exports = function (md, content, options) {
     //   `<template slot="source"><code-viewer :source="${demoComponentName}"></code-viewer></template>`
     // ); // 使用slot插槽 运行组件
     language === 'js' && output.push(
-      `<code-viewer :source="${demoComponentName}" language="${language}"></code-viewer>`
+      `<ClientOnly><code-viewer :source="${demoComponentName}" language="${language}"></code-viewer></ClientOnly>`
     ); // 使用slot插槽 运行组件
     // output.push(`<template slot="source"><${demoComponentName} /></template>`); // 使用slot插槽 运行组件
     componenetsString += `${demoComponentName}: \`${escapeBackticks(
