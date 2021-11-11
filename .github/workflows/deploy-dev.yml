@@ -42,7 +42,6 @@ jobs:
         run: |
           ssh work@47.94.136.43 "
             cd /home/work/cavinHuang-note;
-            git branch -M main;
             git remote add origin https://CavinHuang:${{secrets.COSEN_TOKEN}}@github.com/CavinHuang/note.git;
             git checkout main;
             git config pull.rebase false;
