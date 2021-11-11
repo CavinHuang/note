@@ -9,7 +9,7 @@ COPY . /app
 
 COPY package*.josn ./app
 
-RUN npm install
+RUN npm install --registry=https://registry.npmmirror.com
 
 # 拷贝 nginx 配置文件
 # COPY nginx.conf /etc/nginx/nginx.conf
