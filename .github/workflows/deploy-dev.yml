@@ -37,20 +37,20 @@ jobs:
           mkdir -p ~/.ssh/
           echo "${{secrets.COSEN_ID_RSA}}" > ~/.ssh/id_rsa
           chmod 600 ~/.ssh/id_rsa
-          ssh-keyscan "${{secrets.COSEN_HOST}}" >> ~/.ssh/known_hosts
+          ssh-keyscan "47.94.136.43" >> ~/.ssh/known_hosts
       - name: deploy
         run: |
-          ssh work@${{secrets.COSEN_HOST}} "
-            cd /home/work/choba-lego/admin-fe;
+          ssh work@47.94.136.43 "
+            cd /home/work/cavinHuang-note;
             git remote add origin https://CavinHuang:${{secrets.COSEN_TOKEN}}@github.com/CavinHuang/note.git;
-            git checkout feature_dev;
+            git checkout main;
             git config pull.rebase false;
-            git pull origin feature_dev;
+            git pull origin main;
             git remote remove origin;
 
             # 构建 prd-dev
-            # npm i;
-            # npm run build-dev;
+            npm i;
+            npm run docs:build;
 
             # 启动 docker
             docker-compose build admin-fe; # 和 docker-compose.yml service 名字一致
