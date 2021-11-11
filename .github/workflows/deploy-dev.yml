@@ -40,17 +40,17 @@ jobs:
           ssh-keyscan "${{secrets.COSEN_HOST}}" >> ~/.ssh/known_hosts
       - name: deploy
         run: |
-          ssh work@47.94.136.43"
-            cd /home/work/cavinHuang-note;
-            git remote add origin https://${{secrets.COSEN_TOKEN}}@github.com/CavinHuang/note.git;
-            git checkout main;
+          ssh work@${{secrets.COSEN_HOST}} "
+            cd /home/work/choba-lego/admin-fe;
+            git remote add origin https://CavinHuang:${{secrets.COSEN_TOKEN}}@github.com/CavinHuang/note.git;
+            git checkout feature_dev;
             git config pull.rebase false;
-            git pull origin main;
+            git pull origin feature_dev;
             git remote remove origin;
 
             # 构建 prd-dev
-            npm i;
-            npm run docs:build;
+            # npm i;
+            # npm run build-dev;
 
             # 启动 docker
             docker-compose build admin-fe; # 和 docker-compose.yml service 名字一致
