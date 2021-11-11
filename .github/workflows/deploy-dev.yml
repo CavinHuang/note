@@ -46,7 +46,7 @@ jobs:
             git checkout main;
             git config pull.rebase false;
             git pull origin main;
-            git remote remove origin;
+            # git remote remove origin;
 
             # 构建 prd-dev
             #npm i;
