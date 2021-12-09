@@ -1,5 +1,5 @@
 module.exports = [
-  { text: "vue3学习", link: "/vue3/" },
+  { text: "vue学习", link: "/vue/" },
   { text: "React学习", link: "/react/" },
   { text: "PHP学习", link: "/php/" },
   { text: "算法学习", link: "/algorithm/", children: [
