@@ -3,7 +3,7 @@
  */
 const nav = require('./configs/nav')
 const sidebar = require('./configs/sidebar')
-const base = process.env.BASE || '/'
+const base = process.env.BASE || '/note/'
 const path = require('path')
 // const { base } = require('vuepress')
 const isProd = process.env.NODE_ENV === "production";

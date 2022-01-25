@@ -3,6 +3,7 @@
 ## 起步
 
 ### 初始化一个vue3项目
+
 首先，我们用vite创建一个简单的vue3的项目
 
 ```bash
@@ -37,8 +38,8 @@ app.provide('user', 'administrator')
 import MyPlugin from './plugins/MyPlugin'
 app.use(MyPlugin)
 ...
-
 ```
+
 那么createApp是做了什么呢，是怎么样把虚拟DOM转换成真实DOM的呢？
 
 ## createApp的过程
@@ -49,6 +50,7 @@ app.use(MyPlugin)
 ### createApp源码分析
 
 分析过程请看如下代码注释
+
 ```javascript
 const createApp = ((...args) => {
   // 核心方法 调用vue实例创建方法创建app实例
@@ -86,13 +88,13 @@ const createApp = ((...args) => {
   };
   return app;
 });
-
 ```
+
 通过上面源码解析，我们可以看出 createApp 主要是干了两件事：
 
- - 创建 app 实例，并返回该实例
+- 创建 app 实例，并返回该实例
 
- - 重写 mount 方法
+- 重写 mount 方法
 
 看完会存在两个主要疑问，ensureRenderer 是干啥用的？为什么要重写 mount 方法，而不直接使用呢？
 
@@ -133,16 +135,15 @@ export function createHydrationRenderer(
 到此处发现 baseCreateRenderer才是真容。
 从分析可以看出：
 
- - 存在 2 种类型的渲染器，它们都是基于 baseCreateRenderer 函数创建，此函数存在重载。
+- 存在 2 种类型的渲染器，它们都是基于 baseCreateRenderer 函数创建，此函数存在重载。
 
- - 渲染器都是通过延迟创建，方便不使用的时候做 tree-shaking。
+- 渲染器都是通过延迟创建，方便不使用的时候做 tree-shaking。
 
 ### baseCreateRenderer
 
 创建渲染器的实例，渲染器核心创建逻辑，包含创建组件实例、挂载实例、对比、更新、移除等操作，总体源码如下，先粗略的看下整个过程，后面再深入到具体的作用
 
 ```javascript
-
 // implementation
 function baseCreateRenderer(options, createHydrationFns) {
   // 一些运行时的准备
@@ -340,13 +341,13 @@ function baseCreateRenderer(options, createHydrationFns) {
       createApp: createAppAPI(render, hydrate)
   };
 }
-
 ```
+
 可以看出 baseCreateRenderer 主要实现了：
 
- - 实现了组件渲染的创建、更新、卸载等核心逻辑（后续解读）
+- 实现了组件渲染的创建、更新、卸载等核心逻辑（后续解读）
 
- - 返回渲染函数，以及创建应用实例方法，当然还有 hydrate。
+- 返回渲染函数，以及创建应用实例方法，当然还有 hydrate。
 
 渲染对比更新逻辑，非常庞大，后面打算分步骤的逐一阅读，此处先关注总体的创建逻辑
 
@@ -355,8 +356,8 @@ function baseCreateRenderer(options, createHydrationFns) {
 ```javascript
 function createAppAPI(render){
   return function createApp(rootComponent, rootProps = null) {
-  	// rootComponent 就是上面打印的 createApp函数的args参数，也就是options
-    
+      // rootComponent 就是上面打印的 createApp函数的args参数，也就是options
+
     const context = createAppContext()
     const app = (context.app = {
       _uid: uid$1++,
@@ -368,31 +369,32 @@ function createAppAPI(render){
         return context.config
       },
       set config(v) {},
-      
+
       // 这里加载插件，和vue2不同的是，vue2的插件是全局的，这里只针对一个vue实例
       use(plugin, ...options) {},
-      
+
       // 混入
       mixin(mixin){},
-      
+
       // 加载组件
       component(mixin){},
-      
+
       // 指令
       directive(name, directive){},
-      
+
       // 挂载，核心渲染逻辑
       mount(rootContainer, isHydrate){},
-      
+
       // 卸载
       unmount(){},
-      
+
       // 注入
       provide(){}
     })
   }
 }
 ```
+
 从上面的代码，我们可以了解到 createAppAPI 主要实现了：
 
 - 创建定义一个实例上下文 context，包含属性和方法
@@ -410,24 +412,25 @@ mount = (rootContainer, isHydrate) => {
   if (!isMounted) {
     // 创建虚拟节点
     const vnode = createVNode(rootComponent, rootProps)
-    
+
     // 在根VNode上存储应用程序context
     vnode.appContext = context
-    
+
     // 将虚拟节点渲染成真实dom
     render(vnode, rootContainer)
-    
+
     isMounted = true
     app._container = rootContainer
     rootContainer.__vue_app__ = app
     return vnode.component.proxy
   } else {
-   
+
   }
 }
 ```
 
 ## 总结
+
 最后再来一次这张图
 ![createApp整个流程](/vue3/createApp/all.jpg)
 
@@ -435,6 +438,6 @@ mount = (rootContainer, isHydrate) => {
 
 - 执行 createApp 首先会创建渲染器，这里要注意的是存在 2 种渲染器类型，并且它们都是通过延迟创建的，主要目的是当用户只引用 reactive 响应式框架的时候，方便进行 tree-shaking 优化。且两种渲染器都是基于 baseCreateRender 方法来实现。
 
-- baseCreateRender 函数执行后会返回 render 渲染函数和 createApp 方法，其中 render 函数是组件创建、更新和卸载的主要核心逻辑实现。createApp 则用于创建应用实例，进行应用实例的初始化。
+- baseCreateRender 函数执行后会返回 render -渲染函数和 createApp 方法，其中 render 函数是组件创建、更新和卸载的主要核心逻辑实现。createApp 则用于创建应用实例，进行应用实例的初始化。
 
 - createAppAPI 用于生成默认的应用上下文 context，这里定义了应用实例具备的属性和方法，并通过重写扩展 context.app 属性，让用户能够进行对上下文的自定义操作，比如自定义组件、指令、mixin、插件安装等一系列操作。并存在 mount 方法完成将根组件转为虚拟节点 vNode，并通过render 函数完成对 vNode 的渲染。
