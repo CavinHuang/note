@@ -19,7 +19,7 @@ git commit -m 'deploy'
 
 # 如果发布到 https://<USERNAME>.github.io/<REPO>
 git remote add origin git@github.com:CavinHuang/note.git
-git branch -M vuepress
-git push -f git@github.com:CavinHuang/note.git vuepress:gh-pages
+git branch -M main
+git push -f git@github.com:CavinHuang/note.git main:gh-pages
 
 cd -
