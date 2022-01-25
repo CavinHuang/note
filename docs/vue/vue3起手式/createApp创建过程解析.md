@@ -45,7 +45,7 @@ app.use(MyPlugin)
 ## createApp的过程
 
 首先放一张完整的流程图，先有一个印象：
-![createApp整个流程](/vue3/createApp/all.jpg)
+![createApp整个流程](vue3/createApp/all.jpg)
 
 ### createApp源码分析
 
@@ -100,11 +100,11 @@ const createApp = ((...args) => {
 
 此处我们首先看看 传入 `args`:
 
-![createApp 接受的参数 args](/vue3/createApp/createApp.png)
+![createApp 接受的参数 args](vue3/createApp/createApp.png)
 
 实例化后的app具有的方法包含，`app.component()` 挂载组件方法、 `app.config` 全局配置属性、`app.mixin()` 挂载mixin方法、`app.provide()`根部注入属性方法、`app.use()`挂载插件的方法、`app.mount()`实例挂载节点容器方法、`app.unmount()` 卸载方法
 
-![createApp app实例](/vue3/createApp/app-instance.png)
+![createApp app实例](vue3/createApp/app-instance.png)
 
 ### ensureRenderer
 
@@ -432,7 +432,7 @@ mount = (rootContainer, isHydrate) => {
 ## 总结
 
 最后再来一次这张图
-![createApp整个流程](/vue3/createApp/all.jpg)
+![createApp整个流程](vue3/createApp/all.jpg)
 
 至此分析了 createApp 大致的流程，内部更细致的实现，后续再根据内容深入分析，这里再总结下整个过程。
 
